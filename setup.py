@@ -64,7 +64,7 @@ from setuptools import setup
 
 setup(
     name='QuickFF',
-    version='2.2.7',
+    version='3.0.0',
     description='Python library to quickly derive force fields from ab initio training data.',
     author='Louis Vanduyfhuys',
     author_email='Louis.Vanduyfhuys@UGent.be',
@@ -85,5 +85,5 @@ setup(
         'Topic :: Science/Engineering :: Molecular Science'
     ],
     install_requires=['numpy>=1.0',
-                      'importlib_resources; python_version < "3.7"'],
+                      'importlib_resources; python_version >= "3.0"'],
 )

@@ -27,6 +27,7 @@
 
 from io import IOBase
 import os, sys, datetime, getpass, atexit
+import platform
 import numpy, scipy, matplotlib
 
 __all__ = ['version', 'log']
@@ -194,7 +195,7 @@ class Logger(object):
         mll = self.mll
         self.mll = 20
         with self.section('USER', 1): self.dump(getpass.getuser(), new_line=False)
-        with self.section('MACHINE', 1): self.dump(' '.join(os.uname()), new_line=False)
+        with self.section('MACHINE', 1): self.dump(' '.join(platform.uname()), new_line=False)
         with self.section('TIME', 1): self.dump(datetime.datetime.now().isoformat().replace('T', ' '), new_line=False)
         with self.section('QUICKFF VERSION', 1): self.dump(version.replace('\n', ''), new_line=False)
         with self.section('PYTHON VERSION', 1): self.dump(sys.version.replace('\n', ''), new_line=False)
