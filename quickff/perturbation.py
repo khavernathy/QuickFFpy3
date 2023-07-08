@@ -24,7 +24,7 @@
 #
 #--
 
-from __future__ import absolute_import
+
 
 from molmod.io.xyz import XYZWriter
 from molmod.units import *

@@ -24,7 +24,7 @@
 #
 #--
 
-from __future__ import print_function, absolute_import
+
 
 '''
     Convenience functions to enable using scoop.

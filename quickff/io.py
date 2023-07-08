@@ -24,7 +24,7 @@
 #
 #--
 
-from __future__ import print_function, absolute_import, unicode_literals
+
 
 '''Readers ab initio vibrational calculations.
 '''
@@ -187,7 +187,7 @@ def make_yaff_ei(fn, charges, bcis=None, radii=None, scales=[1,1,1]):
         print('# ----------------------------------------------------', file=f)
         print('# KEY         label0   label1           P_AB          ', file=f)
         print('# ----------------------------------------------------', file=f)
-        for key, bci in bcis.items():
+        for key, bci in list(bcis.items()):
             ffatype1, ffatype2 = key.split('.')
             print('FIXQ:BOND  %8s  %8s  % 12.10f' %(ffatype1, ffatype2, bci), file=f)
     f.close()

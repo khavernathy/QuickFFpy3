@@ -24,7 +24,7 @@
 #
 #--
 
-from __future__ import print_function, absolute_import
+
 
 from molmod.units import deg, angstrom, centimeter
 from molmod.constants import lightspeed
@@ -257,7 +257,7 @@ def set_ffatypes(system, level, enforce={}):
                         neighs[nsym] += 1
                     else:
                         neighs[nsym] = 1
-                for nsym, nnum in neighs.items():
+                for nsym, nnum in list(neighs.items()):
                     atype += '_%s%i' %(nsym, nnum)
             atypes.append(atype)
     elif level == 'highest':
@@ -267,9 +267,9 @@ def set_ffatypes(system, level, enforce={}):
     else:
         raise ValueError('Invalid level, recieved %s' % level)
     for i, number in enumerate(system.numbers):
-        if i in enforce.keys():
+        if i in list(enforce.keys()):
             atypes[i] = enforce[i]
-        elif pt[number].symbol in enforce.keys():
+        elif pt[number].symbol in list(enforce.keys()):
             atypes[i] = enforce[pt[number].symbol]
     system.ffatypes = np.array(atypes)
     system._init_derived_ffatypes()
@@ -486,7 +486,7 @@ def average(data, ffatypes, fmt='full', verbose=False):
             data_atypes[ffatype] = [value]
     if fmt=='sort':
         output = {}
-        for ffatype, data in data_atypes.items():
+        for ffatype, data in list(data_atypes.items()):
             output[ffatype] = np.array(data)
     elif fmt=='full':
         output = np.zeros(len(data))
@@ -499,14 +499,14 @@ def average(data, ffatypes, fmt='full', verbose=False):
             output[i] = np.array(data_atypes[ffatype]).mean()
     elif fmt=='dict':
         output = {}
-        for ffatype, values in data_atypes.items():
+        for ffatype, values in list(data_atypes.items()):
             output[ffatype] = np.array(values).mean()
     else:
         raise IOError('Format %s not supported, should be full or dict' %fmt)
     if verbose:
         print('Averaged Atomic Charges:')
         print('------------------------')
-        for ffatype, values in data_atypes.items():
+        for ffatype, values in list(data_atypes.items()):
             print('  %4s    % .3f +- % .3f (N=%i)' %(ffatype, np.array(values).mean(), np.array(values).std(), len(values)))
         print('')
     return output
@@ -556,7 +556,7 @@ def charges_to_bcis(charges, ffatypes, bonds, constraints={}, verbose=True):
             signs[i] = -1.0
     #decompile constraints
     masterof = {}
-    for m, s in constraints.items():
+    for m, s in list(constraints.items()):
         types = m.split('.')
         if types[0]>=types[1]: m = '.'.join(types[::-1])
         for slave, sign in s:
@@ -622,7 +622,7 @@ def charges_to_bcis(charges, ffatypes, bonds, constraints={}, verbose=True):
         print(' %10s |  %6s +- %5s (%2s)  |  %6s +- %5s (%2s)  | %9s ' %('Atype', '<Qin>', 'std', 'N', '<Qbci>', 'std', 'N', 'RMSD'))
         print('    '+'-'*71)
         sums = np.array([0.0, 0.0, 0.0])
-        for atype, qins in apriori_values.items():
+        for atype, qins in list(apriori_values.items()):
             qouts = aposteriori_values[atype]
             print(' %10s |  % 6.3f +- %5.3f (%2i)  |  % 6.3f +- %5.3f (%2i)  | % 9.6f ' %(atype,
                 qins.mean(), qins.std(), len(qins),
@@ -639,7 +639,7 @@ def charges_to_bcis(charges, ffatypes, bonds, constraints={}, verbose=True):
         print('')
     #construct output dictionnary containing also bci's of slaves
     result = dict((btype, bci) for btype, bci in zip(masterlist, bcis))
-    for slave, (master, sign) in masterof.items():
+    for slave, (master, sign) in list(masterof.items()):
         result[slave] = result[master]*sign
     return result
 

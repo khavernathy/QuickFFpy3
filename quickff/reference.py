@@ -24,7 +24,7 @@
 #
 #--
 
-from __future__ import absolute_import
+
 
 from yaff.pes.ff import ForceField, ForcePartValence, ForcePartPair
 from yaff.pes.ext import PairPotEI

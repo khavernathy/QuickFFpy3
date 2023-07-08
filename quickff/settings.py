@@ -24,7 +24,7 @@
 #
 #--
 
-from __future__ import print_function, absolute_import
+
 from io import IOBase
 from quickff.log import log
 from molmod.units import parse_unit
@@ -224,7 +224,7 @@ class Settings(object):
         #if settings are defined through keyword arguments to this init
         #constructor, read these settings and overwrite general RC as
         #wel as config file settings
-        for key, value in kwargs.items():
+        for key, value in list(kwargs.items()):
             #don't impose keyword argument that hasn't been set
             if value is None: continue
             key = key.lstrip().rstrip()
@@ -275,7 +275,7 @@ class Settings(object):
                     self.set(key, value)
 
     def _set_suffix(self, suffix):
-        for key, fn in self.__dict__.items():
+        for key, fn in list(self.__dict__.items()):
             if fn is None or not key.startswith('fn_') or key=='fn_traj': continue
             prefix, extension = fn.split('.')
             self.__dict__[key] = '%s%s.%s' %(prefix, suffix, extension)
@@ -291,12 +291,12 @@ class Settings(object):
             IOError('Key %s is not allowed in settings routine' %key)
         if isinstance(value, str) and value.lower() in ['default']:
             return
-        if key in decoders.keys():
+        if key in list(decoders.keys()):
             value = decoders[key](value)
         self.__dict__[key] = value
 
     def check(self):
-        for key, value in self.__dict__.items():
+        for key, value in list(self.__dict__.items()):
             for check_function in key_checks[key]:
                 check_function(key,value)
 

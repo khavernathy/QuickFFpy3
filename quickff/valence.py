@@ -24,7 +24,7 @@
 #
 #--
 
-from __future__ import unicode_literals, absolute_import
+
 
 from molmod.units import *
 from molmod.ic import bend_angle, _bend_angle_low, dihed_angle, _dihed_angle_low
@@ -442,7 +442,7 @@ class ValenceFF(ForcePartValence):
             nabends = 0
             ncbends = 0
             nsqbends = 0
-            for types, bends in angles.items():
+            for types, bends in list(angles.items()):
                 potkind = None
                 rvs = []
                 for i, bend in enumerate(bends):
@@ -540,7 +540,7 @@ class ValenceFF(ForcePartValence):
             #loop over all distinct dihedral types
             ncheb = 0
             ncos = 0
-            for types, diheds in dihedrals.items():
+            for types, diheds in list(dihedrals.items()):
                 psi0s = np.zeros(len(diheds), float)
                 ms = np.zeros(len(diheds), float)
                 bendskip = False
@@ -667,7 +667,7 @@ class ValenceFF(ForcePartValence):
             #loop over all distinct opdist types
             nharm = 0
             nsq = 0
-            for types, oops in opdists.items():
+            for types, oops in list(opdists.items()):
                 skip = False
 
                 if self.settings.excl_oopds is not None:
@@ -1028,7 +1028,7 @@ class ValenceFF(ForcePartValence):
                 master is a string defining the master basename and slaves is a
                 list of strings defining the slave basenames.
         '''
-        for mastername, slavenames in constraints.items():
+        for mastername, slavenames in list(constraints.items()):
             masters = [term for term in self.iter_masters(mastername)]
             assert len(masters)==1, 'Master %s is not uniquely defined' %mastername
             master = masters[0]
