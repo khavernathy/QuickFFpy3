@@ -52,8 +52,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'QuickFF'
-copyright = u'2019, Louis Vanduyfhuys, Center for Molecular Modeling, Ghent University'
+project = 'QuickFF'
+copyright = '2019, Louis Vanduyfhuys, Center for Molecular Modeling, Ghent University'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -225,8 +225,8 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'QuickFF.tex', u'QuickFF Documentation',
-   u'Louis Vanduyfhuys', 'manual'),
+  ('index', 'QuickFF.tex', 'QuickFF Documentation',
+   'Louis Vanduyfhuys', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -255,8 +255,8 @@ latex_logo = 'quickff_logo.png'
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'quickff', u'QuickFF Documentation',
-     [u'Louis Vanduyfhuys'], 1)
+    ('index', 'quickff', 'QuickFF Documentation',
+     ['Louis Vanduyfhuys'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -269,8 +269,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'QuickFF', u'QuickFF Documentation',
-   u'Louis Vanduyfhuys', 'QuickFF', 'One line description of project.',
+  ('index', 'QuickFF', 'QuickFF Documentation',
+   'Louis Vanduyfhuys', 'QuickFF', 'One line description of project.',
    'Miscellaneous'),
 ]
 
